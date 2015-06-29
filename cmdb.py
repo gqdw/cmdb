@@ -1,6 +1,7 @@
 import subprocess
 import json
-from xlwt import Workbook
+#from xlwt import Workbook
+import xlwt
 
 # ecs.py DescribeRegions
 ecsfile = '/Users/aca/cmdb/ecs.py'
@@ -33,6 +34,7 @@ class c_ecs:
 	ImageId=''
 	def p(self):
 		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId))
+	
 
 #ecs arrays
 arr_ecs = []
@@ -60,16 +62,25 @@ def get_ecs( reg ):
 #	return e
 	
 
-book = Workbook()
+wb = xlwt.Workbook()
 for i in regs:
 	get_ecs(i)
+	#wb.add_sheet(i)
 #	e = c_ecs()
 #	e = get_ecs(i)
 #	e.p()
 	
+ws = wb.add_sheet('ecs')
+j = 1
 for i in arr_ecs:
 	i.p()
+	ws.write(j,0,i.InstanceId)
+	ws.write(j,1,i.InnerIpAddress)
+	ws.write(j,2,i.PublicIpAddress)
+	ws.write(j,3,i.ImageId)
+	j = j+1
 	
+wb.save('ecs.xls')	
 #	book.add_sheet(i)
 
 	
