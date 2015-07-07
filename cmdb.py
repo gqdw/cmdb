@@ -4,7 +4,7 @@ import json
 import xlwt
 
 # ecs.py DescribeRegions
-ecsfile = '/Users/aca/cmdb/ecs.py'
+ecsfile = '/Users/aca/github/cmdb/ecs.py'
 regs=[]
 
 def get_regions():
@@ -71,6 +71,10 @@ for i in regs:
 #	e.p()
 	
 ws = wb.add_sheet('ecs')
+ws.write(0,0,'InstanceId')
+ws.write(0,1,'InnerIpAddress')
+ws.write(0,2,'PublicIpAddress')
+ws.write(0,3,'ImageId')
 j = 1
 for i in arr_ecs:
 	i.p()
