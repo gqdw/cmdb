@@ -34,8 +34,9 @@ class c_ecs:
 	ImageId=''
 	Status = ''
 	ZoneId = '' 
+	InstanceType = ''
 	def p(self):
-		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n Status=%s \n ZoneId=%s" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId,self.Status,self.ZoneId))
+		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n Status=%s \n ZoneId=%s \n InstanceType=%s\n" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId,self.Status,self.ZoneId ,self.InstanceType ))
 	
 
 #ecs arrays
@@ -60,6 +61,7 @@ def get_ecs( reg ):
 		e.ImageId = i["ImageId"]
 		e.Status = i["Status"]
 		e.ZoneId = i["ZoneId"]
+		e.InstanceType = i["InstanceType"]
 		arr_ecs.append(e)
 #	return e
 	
@@ -79,6 +81,7 @@ def save_to_file( filename ):
 	ws.write(0,3,'ImageId')
 	ws.write(0,4,'Status')
 	ws.write(0,5,'ZoneId')
+	ws.write(0,6,'InstanceType')
 	j = 1
 	for i in arr_ecs:
 		i.p()
@@ -88,6 +91,7 @@ def save_to_file( filename ):
 		ws.write(j,3,i.ImageId)
 		ws.write(j,4,i.Status)
 		ws.write(j,5,i.ZoneId)
+		ws.write(j,6,i.InstanceType)
 		j = j+1
 		
 	#wb.save('ecs.xls')	
