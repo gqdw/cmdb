@@ -32,14 +32,14 @@ class c_ecs:
 	InnerIpAddress=''
 	PublicIpAddress=''
 	ImageId=''
+	Status = ''
+	ZoneId = '' 
 	def p(self):
-		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId))
+		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n Status=%s \n ZoneId=%s" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId,self.Status,self.ZoneId))
 	
 
 #ecs arrays
 arr_ecs = []
-
-
 
 def get_ecs( reg ):
 #	RegionID=cn-hangzhou
@@ -58,35 +58,42 @@ def get_ecs( reg ):
 		e.InnerIpAddress = i["InnerIpAddress"]["IpAddress"][0]
 		e.PublicIpAddress = i["PublicIpAddress"]["IpAddress"][0]
 		e.ImageId = i["ImageId"]
+		e.Status = i["Status"]
+		e.ZoneId = i["ZoneId"]
 		arr_ecs.append(e)
 #	return e
 	
-
-wb = xlwt.Workbook()
-for i in regs:
-	get_ecs(i)
-	#wb.add_sheet(i)
-#	e = c_ecs()
-#	e = get_ecs(i)
-#	e.p()
-	
-ws = wb.add_sheet('ecs')
-ws.write(0,0,'InstanceId')
-ws.write(0,1,'InnerIpAddress')
-ws.write(0,2,'PublicIpAddress')
-ws.write(0,3,'ImageId')
-j = 1
-for i in arr_ecs:
-	i.p()
-	ws.write(j,0,i.InstanceId)
-	ws.write(j,1,i.InnerIpAddress)
-	ws.write(j,2,i.PublicIpAddress)
-	ws.write(j,3,i.ImageId)
-	j = j+1
-	
-wb.save('ecs.xls')	
+def save_to_file( filename ):
+	wb = xlwt.Workbook()
+	for i in regs:
+		get_ecs(i)
+		#wb.add_sheet(i)
+	#	e = c_ecs()
+	#	e = get_ecs(i)
+	#	e.p()
+		
+	ws = wb.add_sheet('ecs')
+	ws.write(0,0,'InstanceId')
+	ws.write(0,1,'InnerIpAddress')
+	ws.write(0,2,'PublicIpAddress')
+	ws.write(0,3,'ImageId')
+	ws.write(0,4,'Status')
+	ws.write(0,5,'ZoneId')
+	j = 1
+	for i in arr_ecs:
+		i.p()
+		ws.write(j,0,i.InstanceId)
+		ws.write(j,1,i.InnerIpAddress)
+		ws.write(j,2,i.PublicIpAddress)
+		ws.write(j,3,i.ImageId)
+		ws.write(j,4,i.Status)
+		ws.write(j,5,i.ZoneId)
+		j = j+1
+		
+	#wb.save('ecs.xls')	
+	wb.save( filename )	
 #	book.add_sheet(i)
-
+save_to_file('ecs.xls')
 	
 
 #for i in regs:
