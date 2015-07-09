@@ -2,15 +2,34 @@ import subprocess
 import json
 #from xlwt import Workbook
 import xlwt
+import datetime
+
 
 # ecs.py DescribeRegions
+#global vars
 ecsfile = '/Users/aca/github/cmdb/ecs.py'
 regs=[]
+#ecs arrays
+arr_ecs = []
+
+
+
+class timelog:
+#       start_time = datetime.now()
+
+        def __init__(self):
+                self.start_time = datetime.datetime.now()
+                print "Timer plugin is active."
+        def end(self):
+                self.end_time = datetime.datetime.now()
+        def p(self):
+                print "past %d seconds\n" % ((self.end_time - self.start_time).seconds)
+		print "past %d microseconds\n" % ((self.end_time - self.start_time).microseconds)
+
 
 def get_regions():
 	child1 = subprocess.Popen(["python",ecsfile,"DescribeRegions"],stdout=subprocess.PIPE)
 	#child1 = subprocess.Popen(["python","/Users/aca/cmdb/ecs.py DescribeRegions"],stdout=subprocess.PIPE)
-	#child1 = subprocess.Popen(["cat","/Users/aca/cmdb/ecs.py"],stdout=subprocess.PIPE)
 	res = child1.communicate()
 	#print res[0]
 	#print type(res[0])
@@ -35,12 +54,11 @@ class c_ecs:
 	Status = ''
 	ZoneId = '' 
 	InstanceType = ''
+	InstanceName = ''
 	def p(self):
-		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n Status=%s \n ZoneId=%s \n InstanceType=%s\n" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId,self.Status,self.ZoneId ,self.InstanceType ))
+		print ("InstanceId=%s \n InnerIpAddress=%s \n PublicIpAddress=%s \n ImageId=%s \n Status=%s \n ZoneId=%s \n InstanceType=%s \n InstanceName=%s \n" %(self.InstanceId,self.InnerIpAddress,self.PublicIpAddress,self.ImageId,self.Status,self.ZoneId ,self.InstanceType ,self.InstanceName))
 	
 
-#ecs arrays
-arr_ecs = []
 
 def get_ecs( reg ):
 #	RegionID=cn-hangzhou
@@ -62,6 +80,7 @@ def get_ecs( reg ):
 		e.Status = i["Status"]
 		e.ZoneId = i["ZoneId"]
 		e.InstanceType = i["InstanceType"]
+		e.InstanceName = i["InstanceName"]
 		arr_ecs.append(e)
 #	return e
 	
@@ -82,6 +101,7 @@ def save_to_file( filename ):
 	ws.write(0,4,'Status')
 	ws.write(0,5,'ZoneId')
 	ws.write(0,6,'InstanceType')
+	ws.write(0,7,'InstanceName')
 	j = 1
 	for i in arr_ecs:
 		i.p()
@@ -92,14 +112,20 @@ def save_to_file( filename ):
 		ws.write(j,4,i.Status)
 		ws.write(j,5,i.ZoneId)
 		ws.write(j,6,i.InstanceType)
+		ws.write(j,7,i.InstanceName)
 		j = j+1
 		
 	#wb.save('ecs.xls')	
 	wb.save( filename )	
 #	book.add_sheet(i)
-save_to_file('ecs.xls')
-	
 
+def main():	
+	tl = timelog()
+	save_to_file('ecs.xls')
+	tl.end()
+	tl.p()
+
+main()
 #for i in regs:
 #	sheet1 = book.add_sheet(i)
 
