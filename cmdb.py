@@ -44,7 +44,7 @@ def get_regions():
 		regs.append(i["RegionId"])  
 		#print arr[i]["LocalName"]
 get_regions()
-#print regs
+print regs
 
 class c_ecs:
 	InstanceId=''
