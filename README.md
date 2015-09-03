@@ -43,3 +43,5 @@ python ecs.py config --id=[accesskeyid] --secret=[accesskeysecret]
   "RequestId": "8C3B760F-D126-413E-A67D-D3E81C3E1CBF"
 }
 ```
+
+之后我又重写了一个django的界面。
