@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
+from .models import Host
 # Create your views here.
 
 class Searchbox(forms.Form):
@@ -17,3 +18,6 @@ def search( request ):
 		form = Searchbox()
 	return 	render( request,'search.html',{ 'form':form })
 		
+def listhost( request ):
+	hosts = Host.objects.all()
+	return render( request, 'list.html',{ 'hosts': hosts} )
