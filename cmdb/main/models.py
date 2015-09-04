@@ -26,7 +26,7 @@ class Host(models.Model):
 	hostname = models.CharField(max_length=30)
 	eth0 = models.GenericIPAddressField()
 	eth1 = models.GenericIPAddressField()
-	beizhu = models.TextField()
+	beizhu = models.TextField(blank=True)
 #	Region = models.CharField(max_length=3,choices=CRegions)
 	Region = models.ForeignKey(Region)
 #	test = models.TextField()
