@@ -3,7 +3,13 @@
 
 <h1>host lists</h1>
 {% for host in hosts %}
-
-<li> {{host}} </li>
+<table border="1">
+	<tr>
+		<th>{{ host.hostname }} </th>
+		<th>{{ host.eth0 }} </th>
+		<th>{{ host.eth1 }} </th>
+		<th> {{ host.group }} </th>	
+	</tr>
+</table>
 {% endfor %}
 </html>
