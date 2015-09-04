@@ -11,6 +11,13 @@ class Region(models.Model):
 	regionname = models.CharField(max_length=30)
 	def __unicode__(self):
 		return self.regionname
+class Search(models.Model):
+	times = models.IntegerField()	
+	def __unicode__(self):
+		return str(self.times)
+	def add(self):
+		self.times += 1
+		self.save()
 
 class Host(models.Model):
 	CRegions = (

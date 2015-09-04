@@ -13,13 +13,16 @@
 	</table>
 	<input type="submit" value="Submit">
 </form>
+
 <table border="1">
+{% if host %}
 	<tr> 
 		<th>hostname</th>
 		<th>eth0</th>
 		<th>eth1</th>
 		<th>Group</th>
 	</tr>
+{% endif %}
 {% for host in hosts %}
         <tr>
                 <th>{{ host.hostname }} </th>
@@ -29,4 +32,7 @@
         </tr>
 {% endfor %}
 </table>
+{% if times %}
+<li>第{{ times }}次搜索</li>
+{% endif %}
 </html>
