@@ -8,12 +8,19 @@ class Searchbox(forms.Form):
 	host = forms.CharField(max_length=30)
 
 def search( request ):
+	hosts = Host.objects.all()
 	if request.method == 'POST':
 		form = Searchbox(request.POST)
 		if form.is_valid():
 			cd = form.cleaned_data
 			print cd['host']
-			return HttpResponse('ok')
+			host_list = []
+			for h in hosts:
+				if h.hostname == cd['host']:
+					host_list.append(h)
+	
+#			return HttpResponse('ok')
+			return render( request,'search.html',{ 'form':form ,'hosts':host_list})
 	else:
 		form = Searchbox()
 	return 	render( request,'search.html',{ 'form':form })
