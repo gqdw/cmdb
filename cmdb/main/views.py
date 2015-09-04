@@ -16,7 +16,9 @@ def search( request ):
 			print cd['host']
 			host_list = []
 			for h in hosts:
-				if h.hostname == cd['host']:
+				print h.hostname.find(cd['host'])
+				if h.hostname.find(cd['host'])>-1:
+				#if h.hostname == cd['host']:
 					host_list.append(h)
 	
 #			return HttpResponse('ok')
