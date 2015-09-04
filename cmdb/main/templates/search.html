@@ -1,5 +1,17 @@
 <html>
 <h1>search </h1>
+  {% if form.errors %}
+        <p style="color: red;">
+            Please correct the error{{ form.errors|pluralize }} below.
+        </p>
+    {% endif %}
 
+<form action="" method="POST">
+	<table>
+		{% csrf_token %}
+		{{ form.as_table }}
+	</table>
+	<input type="submit" value="Submit">
+</form>
 
 </html>
