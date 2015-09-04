@@ -13,14 +13,20 @@
 	</table>
 	<input type="submit" value="Submit">
 </form>
-{% for host in hosts %}
 <table border="1">
+	<tr> 
+		<th>hostname</th>
+		<th>eth0</th>
+		<th>eth1</th>
+		<th>Group</th>
+	</tr>
+{% for host in hosts %}
         <tr>
                 <th>{{ host.hostname }} </th>
                 <th>{{ host.eth0 }} </th>
                 <th>{{ host.eth1 }} </th>
                 <th> {{ host.group }} </th>
         </tr>
-</table>
 {% endfor %}
+</table>
 </html>
