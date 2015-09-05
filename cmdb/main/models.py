@@ -39,7 +39,7 @@ class Host(models.Model):
 #	test = models.TextField()
 #	test2 = models.TextField()
 	def __unicode__(self):
-		return self.hostname
+		return '%s %s %s %s' % (self.hostname,self.eth0, self.eth1 ,self.group )
 
 #	RegionID = 
 #	os = 
