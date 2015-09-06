@@ -3,7 +3,7 @@ from .models import Hostgroup,Host,Region,Search,Os
 
 # Register your models here.
 class HostAdmin(admin.ModelAdmin):
-	list_display = ('hostname','eth0','eth1','group')
+	list_display = ('hostname','eth0','eth1','group','os')
 	search_fields= ('hostname','eth0','eth1','group')
 	list_field = ('group',)
 #	filter_horizontal = ('Region',)

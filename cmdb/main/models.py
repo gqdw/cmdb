@@ -8,7 +8,7 @@ class Hostgroup(models.Model):
 		return self.groupname
 
 class Region(models.Model):
-	regionname = models.CharField(max_length=30)
+	regionname = models.CharField(max_length=30,default='cn-hangzhou')
 	def __unicode__(self):
 		return self.regionname
 class Search(models.Model):
@@ -34,13 +34,13 @@ class Host(models.Model):
 		('us1','us-west-1'),
 	)
 	group = models.ForeignKey(Hostgroup)
-	os = models.ForeignKey(Os)
+	os = models.ForeignKey(Os,default=1)
 	hostname = models.CharField(max_length=30,unique=True)
 	eth0 = models.GenericIPAddressField(unique=True)
 	eth1 = models.GenericIPAddressField( blank=True,null=True )
 	beizhu = models.TextField(blank=True)
 #	Region = models.CharField(max_length=3,choices=CRegions)
-	Region = models.ForeignKey(Region)
+	Region = models.ForeignKey(Region,default=6)
 #	test = models.TextField()
 #	test2 = models.TextField()
 	def __unicode__(self):
