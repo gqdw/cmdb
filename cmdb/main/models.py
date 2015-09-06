@@ -18,6 +18,10 @@ class Search(models.Model):
 	def add(self):
 		self.times += 1
 		self.save()
+class Os(models.Model):
+	osname = models.CharField(max_length=10,default='Centos6',blank=True )
+	def __unicode__(self):
+		return self.osname
 
 class Host(models.Model):
 	CRegions = (
@@ -30,6 +34,7 @@ class Host(models.Model):
 		('us1','us-west-1'),
 	)
 	group = models.ForeignKey(Hostgroup)
+	os = models.ForeignKey(Os)
 	hostname = models.CharField(max_length=30,unique=True)
 	eth0 = models.GenericIPAddressField(unique=True)
 	eth1 = models.GenericIPAddressField( blank=True,null=True )
