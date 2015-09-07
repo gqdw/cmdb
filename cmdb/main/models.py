@@ -24,9 +24,13 @@ class Os(models.Model):
 		return self.osname
 class Dbtype(models.Model):
 #	dbname = models.CharField(max_length=20,unique=True)
+	def setval(self,mem,con,iops):
+		self.mem = mem
+		self.connections = con
+		self.iops = iops
 	mem = models.IntegerField(unique=True)
-	connections = models.IntegerField(unique=True)
-	iops = models.IntegerField(unique=True)
+	connections = models.IntegerField()
+	iops = models.IntegerField()
 	def __unicode__(self):
 		return "%sMB %i %i" % (self.mem,self.connections ,self.iops)
 
