@@ -36,8 +36,10 @@ class Dbtype(models.Model):
 
 class Rds(models.Model):
 	group = models.ForeignKey(Hostgroup)
-	dns = models.URLField(max_length=50)
+	dns = models.CharField(max_length=50)
 	dbtype = models.ForeignKey(Dbtype)
+	def __unicode__(self):
+		return "%s %s" % (self.dns,self.dbtype)
 #type ,mem,connections,iops
 	Region = models.ForeignKey(Region,default=6)
 	
