@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django import forms
-from .models import Host,Search
+from .models import Host,Search,Hostgroup,Rds
 # Create your views here.
 
 class Searchbox(forms.Form):
@@ -38,4 +38,6 @@ def search( request ):
 		
 def listhost( request ):
 	hosts = Host.objects.all()
-	return render( request, 'list.html',{ 'hosts': hosts} )
+#	groups =  Hostgroup.objects.all()
+	rdss= Rds.objects.all()
+	return render( request, 'list.html',{ 'hosts': hosts,'rdss':rdss} )

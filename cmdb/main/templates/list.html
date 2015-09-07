@@ -2,14 +2,27 @@
 <html>
 
 <h1>host lists</h1>
-{% for host in hosts %}
 <table border="1">
+{% for host in hosts %}
 	<tr>
 		<th>{{ host.hostname }} </th>
 		<th>{{ host.eth0 }} </th>
 		<th>{{ host.eth1 }} </th>
 		<th> {{ host.group }} </th>	
 	</tr>
-</table>
 {% endfor %}
+</table>
+<h1>RDS lists</h1>
+<table border="1">
+{% for rds in rdss %}
+	<tr>
+		<th> {{rds.dns}} </th>
+		<th> {{rds.dbtype.mem}}MB </th>
+		<th> {{rds.dbtype.connections}} </th>
+		<th> {{rds.dbtype.iops}} </th>
+		<th> {{rds.group}} </th>
+	</tr>
+
+{% endfor %}
+</table>
 </html>
