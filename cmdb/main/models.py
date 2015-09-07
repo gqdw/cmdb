@@ -22,7 +22,19 @@ class Os(models.Model):
 	osname = models.CharField(max_length=10,default='Centos6',blank=True )
 	def __unicode__(self):
 		return self.osname
+class Dbtype(models.Model):
+#	dbname = models.CharField(max_length=20,unique=True)
+	mem = models.CharField(max_length=20,unique=True)
+	connections = models.IntegerField()
+	iops = models.IntegerField()
 
+class Rds(models.Model):
+	group = models.ForeignKey(Hostgroup)
+	dns = models.URLField(max_length=50)
+	dbtype = models.ForeignKey(Dbtype)
+#type ,mem,connections,iops
+	Region = models.ForeignKey(Region,default=6)
+	
 class Host(models.Model):
 	CRegions = (
 		('hz','cn-hangzhou'),
