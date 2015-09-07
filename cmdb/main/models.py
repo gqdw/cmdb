@@ -24,9 +24,11 @@ class Os(models.Model):
 		return self.osname
 class Dbtype(models.Model):
 #	dbname = models.CharField(max_length=20,unique=True)
-	mem = models.CharField(max_length=20,unique=True)
-	connections = models.IntegerField()
-	iops = models.IntegerField()
+	mem = models.IntegerField(unique=True)
+	connections = models.IntegerField(unique=True)
+	iops = models.IntegerField(unique=True)
+	def __unicode__(self):
+		return "%sMB %i %i" % (self.mem,self.connections ,self.iops)
 
 class Rds(models.Model):
 	group = models.ForeignKey(Hostgroup)
