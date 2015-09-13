@@ -18,11 +18,13 @@
 
 <div class="input-group">
 <form action="" method="POST">
-	<table>
+	<p><label for="id_host">Host:</label> <input id="id_host"   maxlength="30" name="host" type="text" />
+<!--	<table>
 		{% csrf_token %}
-		{{ form.as_table }}
-	</table>
-	<input type="submit" value="Submit" >
+		{{ form.as_ul }}
+	</table> -->
+	<input type="submit" value="Submit" > 
+	</p>
 	<!-- <input type="submit" value="Submit" class="form-control"> -->
 </form>
 </div>
