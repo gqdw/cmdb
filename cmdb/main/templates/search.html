@@ -1,3 +1,13 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
 <html>
 <h1>search </h1>
   {% if form.errors %}
@@ -6,13 +16,16 @@
         </p>
     {% endif %}
 
+<div class="input-group">
 <form action="" method="POST">
 	<table>
 		{% csrf_token %}
 		{{ form.as_table }}
 	</table>
-	<input type="submit" value="Submit">
+	<input type="submit" value="Submit" >
+	<!-- <input type="submit" value="Submit" class="form-control"> -->
 </form>
+</div>
 
 <table border="1">
 {% if hosts %}
