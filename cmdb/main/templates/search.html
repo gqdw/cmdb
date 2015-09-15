@@ -18,6 +18,7 @@
 
 <div class="input-group">
 <form action="" method="POST">
+		{% csrf_token %}
 	<p><label for="id_host">Host:</label> <input id="id_host"   maxlength="30" name="host" type="text" />
 <!--	<table>
 		{% csrf_token %}
