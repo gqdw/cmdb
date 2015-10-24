@@ -41,3 +41,6 @@ def listhost( request ):
 #	groups =  Hostgroup.objects.all()
 	rdss= Rds.objects.all()
 	return render( request, 'list.html',{ 'hosts': hosts,'rdss':rdss} )
+
+def addhost( request):
+	return HttpResponse('ok')

@@ -21,4 +21,5 @@ urlpatterns = [
 	url(r'^search/$','main.views.search'),
 	url(r'^list/$','main.views.listhost'),
 	url(r'^$','main.views.search'),
+	url(r'^addhost/','main.views.addhost'),
 ]
