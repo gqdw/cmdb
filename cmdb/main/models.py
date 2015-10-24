@@ -22,6 +22,11 @@ class Os(models.Model):
 	osname = models.CharField(max_length=10,default='Centos6',blank=True )
 	def __unicode__(self):
 		return self.osname
+	@classmethod
+	def create(cls,name):
+		os = cls(osname=name)
+		return os
+
 class Dbtype(models.Model):
 #	dbname = models.CharField(max_length=20,unique=True)
 	def setval(self,mem,con,iops):
