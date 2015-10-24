@@ -44,4 +44,4 @@ python ecs.py config --id=[accesskeyid] --secret=[accesskeysecret]
 }
 ```
 
-之后我又重写了一个django的界面。
+之后我又重写了一个django的项目，不单是界面了，重写了很多代码。
