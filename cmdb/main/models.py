@@ -18,14 +18,19 @@ class Search(models.Model):
 	def add(self):
 		self.times += 1
 		self.save()
+class OsManager(models.Manager):
+	def create_os(self,name):
+		os=self.create(osname=name)
+		return os
 class Os(models.Model):
-	osname = models.CharField(max_length=10,default='Centos6',blank=True )
+	osname = models.CharField(max_length=10,default='Centos6',blank=True ,unique=True)
 	def __unicode__(self):
 		return self.osname
-	@classmethod
-	def create(cls,name):
-		os = cls(osname=name)
-		return os
+	objects = OsManager()
+	#@classmethod
+	#def create(cls,name):
+	#	os = cls(osname=name)
+	#	return os
 
 class Dbtype(models.Model):
 #	dbname = models.CharField(max_length=20,unique=True)

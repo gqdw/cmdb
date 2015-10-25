@@ -43,4 +43,7 @@ def listhost( request ):
 	return render( request, 'list.html',{ 'hosts': hosts,'rdss':rdss} )
 
 def addhost( request):
+	if request.method == 'GET': 
+		h_name = request.REQUEST.get('hostname')
+		
 	return HttpResponse('ok')
